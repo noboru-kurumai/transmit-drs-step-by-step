@@ -10,18 +10,18 @@
     <script src="https://platform-websdk.transmitsecurity.io/platform-websdk/latest/ts-platform-websdk.js" defer="true" id="ts-platform-script"></script> 
     <script>
       document.getElementById("ts-platform-script").addEventListener("load", function() {
-        window.tsPlatform.initialize({ clientId: "7lqr7ttnnmsv8dmcip6ycl0s593875v2" });
+        window.tsPlatform.initialize({ clientId: "<your client id>" });
       });
     </script>
     
-    <!-- Step2: Report Action #1-->    <!-- Step2: Report Action #1-->
+    <!-- Step2: Report Action #1-->
     <script>
       async function reportAction(actionType) {
         window.tsPlatform.drs.triggerActionEvent(actionType).then((actionResponse) => {
           let actionToken = actionResponse.actionToken;
         });
       }
-    </script>    
+    </script>
     
     <!-- Step4: Set UserID -->
     <script>
@@ -32,7 +32,12 @@
     </script>
     
     <!-- Step6: Clear User -->
-
+    <script>
+      async function clearUser() {
+        window.tsPlatform.drs.clearUser();
+      }
+    </script>
+    
   <body>
     <section class="wrapper">
     <div class="container">
@@ -59,8 +64,26 @@
             <hr>
       
             <!-- Step5: Report Action #3 -->
+            <p>
+              <button class="btn" onclick="reportAction('transaction')">transaction</button>
+              <button class="btn" onclick="reportAction('checkout')">checkout</button>
+              <button class="btn" onclick="reportAction('password_reset')">password_reset</button>
+            </p>
+            <p>
+              <button class="btn" onclick="reportAction('logout')">logout</button>
+              <button class="btn" onclick="reportAction('account_details_change')">account_details_change</button>
+              <button class="btn" onclick="reportAction('account_auth_change')">account_auth_change</button>
+            </p>
+            <p>
+              <button class="btn" onclick="reportAction('withdraw')">withdraw</button>
+              <button class="btn" onclick="reportAction('credits_change')">credits_change</button>
+            </p>
+            <hr>
       
             <!-- Step6: Clear User -->
+            <p>
+              <button class="btn" onclick="clearUser()">clear_user</button>
+            </p>
       
         </div>
     </div>
